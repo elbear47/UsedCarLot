@@ -18,5 +18,10 @@ namespace UsedCarLot
 			Price = price;
 			Mileage = mileage;
 		}
+
+		public override string ToString() // overriding the toString method to get the format we want
+		{
+			return String.Format($"Make: {Make} Model: {Model} Year: {Year} Price: {Price} Mileage: {Mileage}");
+		}
 	}
 }
