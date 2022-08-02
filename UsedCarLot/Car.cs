@@ -24,11 +24,11 @@ namespace UsedCarLot
         public int Year { get; set; }
         public decimal Price { get; set; }
 
-		//public override string ToString() // overriding the toString method to get the format we want
-  //      {
-		//	return 
-  //      }
-		 
+        public override string ToString() // overriding the toString method to get the format we want
+        {
+			return String.Format($"Make: {Make} Model: {Model} Year: {Year} Price: {Price}");
+        }
+
     }
 }
 
