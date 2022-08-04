@@ -3,6 +3,10 @@ namespace UsedCarLot
 {
 	public class Car
 	{
+		private string _make;
+		private string _model;
+		private int _year;
+		private decimal _price;
 		public Car() // constructor w default values
 		{
 			Make = String.Empty;
