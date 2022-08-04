@@ -15,6 +15,8 @@
             //carLot.PrintCarListPrice(30000);
             //carLot.PrintCarListUsed();
             //carLot.PrintCarListNew();
+            CarLot carLot = new CarLot();
+            carLot.ListAllVehicles();
         }
     }
 

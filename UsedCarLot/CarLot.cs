@@ -15,14 +15,21 @@ namespace UsedCarLot
 		};
 
 		public void AddCar(Car c)
-        {
+		{
 			listOfVehicles.Add(c);
-        }
+		}
 		public void RemoveCar(Car c)
-        {
+		{
 			listOfVehicles.Remove(c);
-        }
+		}
 
+		public void ListAllVehicles() 
+		{
+            foreach (Car c in listOfVehicles)
+            {
+                Console.WriteLine(c.ToString());
+            }
+		}
 
 		public CarLot()
 		{
