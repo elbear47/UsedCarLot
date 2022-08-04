@@ -1,9 +1,11 @@
-﻿namespace UsedCarLot
+﻿using System.Reflection;
+
+namespace UsedCarLot
 {
     public class CarLotApp
     {
-        private readonly string path = @"..\..\..\NewCars.txt";  //Points to the new car list
-        private readonly string usedPath = @"..\..\..\UsedCars.txt"; //Points to the used car list
+        private string newCarPath = FindApplicationFile("NewCars.txt").ToString();  //Points to the new car list
+        private string usedCarPath = FindApplicationFile("UsedCars.txt").ToString(); //Points to the used car list
         public List<Car> carList = new(); // List of all cars that are available
 
         /// <summary>
@@ -19,8 +21,8 @@
         /// </summary>
         private void LoadCarList()
         {
-            string[] newCarTextDatabase = File.ReadAllLines(path);
-            string[] usedCarTextDatabase = File.ReadAllLines(usedPath);
+            string[] newCarTextDatabase = File.ReadAllLines(newCarPath);
+            string[] usedCarTextDatabase = File.ReadAllLines(usedCarPath);
 
             foreach(string line in newCarTextDatabase)
             {
@@ -60,8 +62,8 @@
                 }
                 outputNewCar.Add($"{vehicle.Make},{vehicle.Model},{vehicle.Year},{vehicle.Price}");
             }
-            File.WriteAllLines(path, outputNewCar);
-            File.WriteAllLines(usedPath, outputCarUsed);
+            File.WriteAllLines(newCarPath, outputNewCar);
+            File.WriteAllLines(usedCarPath, outputCarUsed);
         }
 
         /// <summary>
@@ -301,6 +303,27 @@
                 Console.WriteLine("Used car added");
             }
             SortCarList();
+        }
+
+        /// <summary>
+        /// Moves up one directory at a time until it finds the file its looking for
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>The file path if found</returns>
+        public static FileInfo FindApplicationFile(string fileName)
+        {
+            string startPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), fileName);
+            FileInfo file = new FileInfo(startPath);
+            while(!file.Exists)
+            {
+                if(file.Directory.Parent == null)
+                {
+                    return null;
+                }
+                DirectoryInfo parentDir = file.Directory.Parent;
+                file = new FileInfo(Path.Combine(parentDir.FullName, file.Name));
+            }
+            return file;
         }
     }
 }
