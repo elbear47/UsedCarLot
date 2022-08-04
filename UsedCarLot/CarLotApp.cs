@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿
+
+using System.Reflection;
 
 namespace UsedCarLot
 {
@@ -24,12 +26,12 @@ namespace UsedCarLot
             string[] newCarTextDatabase = File.ReadAllLines(newCarPath);
             string[] usedCarTextDatabase = File.ReadAllLines(usedCarPath);
 
-            foreach(string line in newCarTextDatabase)
+            foreach (string line in newCarTextDatabase)
             {
                 string[] entries = line.Split(',');
                 carList.Add(new Car(entries[0], entries[1], int.Parse(entries[2]), decimal.Parse(entries[3])));
             }
-            foreach(string line in usedCarTextDatabase)
+            foreach (string line in usedCarTextDatabase)
             {
                 string[] entries = line.Split(',');
                 carList.Add(new UsedCar(entries[0], entries[1], int.Parse(entries[2]), decimal.Parse(entries[3]), double.Parse(entries[4])));
@@ -53,9 +55,9 @@ namespace UsedCarLot
         {
             List<string> outputNewCar = new();
             List<string> outputCarUsed = new();
-            foreach(Car vehicle in carList)
+            foreach (Car vehicle in carList)
             {
-                if(vehicle is UsedCar usedCar)
+                if (vehicle is UsedCar usedCar)
                 {
                     outputCarUsed.Add($"{usedCar.Make},{usedCar.Model},{usedCar.Year},{usedCar.Price},{usedCar.Mileage}");
                     continue;
@@ -72,7 +74,7 @@ namespace UsedCarLot
         public void PrintCarList()
         {
             int index = 1;
-            foreach(Car car in carList)
+            foreach (Car car in carList)
             {
                 Console.WriteLine($"{index}: {car}");
                 index++;
@@ -111,9 +113,9 @@ namespace UsedCarLot
         /// </summary>
         public void PrintCarListUsed()
         {
-            foreach(Car vehicle in carList)
+            foreach (Car vehicle in carList)
             {
-                if(vehicle is UsedCar)
+                if (vehicle is UsedCar)
                 {
                     Console.WriteLine(vehicle);
                 }
@@ -125,9 +127,9 @@ namespace UsedCarLot
         /// </summary>
         public void PrintCarListNew()
         {
-            foreach(Car vehicle in carList)
+            foreach (Car vehicle in carList)
             {
-                if(vehicle is not UsedCar)
+                if (vehicle is not UsedCar)
                 {
                     Console.WriteLine(vehicle);
                 }
@@ -147,14 +149,14 @@ namespace UsedCarLot
                 Console.WriteLine();
                 Console.Write("Please enter the index of the car you want to buy or exit: ");
                 userInput = Console.ReadLine().Trim();
-                if(int.TryParse(userInput, out int index) && --index < carList.Count)
+                if (int.TryParse(userInput, out int index) && --index < carList.Count)
                 {
                     Console.Clear();
                     Console.WriteLine(carList.ElementAt(index));
                     Console.WriteLine();
                     Console.Write($"Are you sure you would like to buy this car Y/N? ");
                     string confirmation = Console.ReadLine().ToLower().Trim();
-                    if(confirmation != string.Empty && "yes".StartsWith(confirmation))
+                    if (confirmation != string.Empty && "yes".StartsWith(confirmation))
                     {
                         Console.Clear();
                         carList.RemoveAt(index);
@@ -166,14 +168,14 @@ namespace UsedCarLot
                     Console.WriteLine("That's too bad.");
                     return;
                 }
-                else if("exit".Equals(userInput.ToLower()))
+                else if ("exit".Equals(userInput.ToLower()))
                 {
                     return;
                 }
                 Console.WriteLine($"Sorry {userInput} is not a valid input");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-            } while(true);
+            } while (true);
         }
 
         /// <summary>
@@ -192,49 +194,49 @@ namespace UsedCarLot
                 Console.Clear();
                 Console.Write("Please enter the make of the car or exit: ");
                 make = Console.ReadLine().Trim();
-                if("exit".Equals(make.ToLower()))
+                if ("exit".Equals(make.ToLower()))
                 {
                     return;
                 }
-                else if(make != string.Empty && !make.Contains(','))
+                else if (make != string.Empty && !make.Contains(','))
                 {
                     break;
                 }
                 Console.WriteLine("Entry is empty or invalid input.");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-            } while(true);
+            } while (true);
 
             do
             {
                 Console.Clear();
                 Console.Write("Please enter the model of the car or exit: ");
                 model = Console.ReadLine().Trim();
-                if("exit".Equals(make.ToLower()))
+                if ("exit".Equals(make.ToLower()))
                 {
                     return;
                 }
-                else if(model != string.Empty && !model.Contains(','))
+                else if (model != string.Empty && !model.Contains(','))
                 {
                     break;
                 }
                 Console.WriteLine("Entry is empty or invalid input.");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-            } while(true);
+            } while (true);
 
             do
             {
                 Console.Clear();
                 Console.Write("Please enter the year of the car or exit: ");
                 string userInput = Console.ReadLine().Trim();
-                if("exit".Equals(userInput.ToLower()))
+                if ("exit".Equals(userInput.ToLower()))
                 {
                     return;
                 }
-                else if(userInput != string.Empty && int.TryParse(userInput, out int yearArg))
+                else if (userInput != string.Empty && int.TryParse(userInput, out int yearArg))
                 {
-                    if(yearArg >= 1886 && yearArg <= DateTime.Now.Year + 1)
+                    if (yearArg >= 1886 && yearArg <= DateTime.Now.Year + 1)
                     {
                         year = yearArg;
                         break;
@@ -243,20 +245,20 @@ namespace UsedCarLot
                 Console.WriteLine("Entry is empty or invalid input.");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-            } while(true);
+            } while (true);
 
             do
             {
                 Console.Clear();
                 Console.Write("Please enter the price of the car or exit: ");
                 string userInput = Console.ReadLine().Trim();
-                if("exit".Equals(userInput.ToLower()))
+                if ("exit".Equals(userInput.ToLower()))
                 {
                     return;
                 }
-                else if(userInput != string.Empty && decimal.TryParse(userInput, out decimal priceArg))
+                else if (userInput != string.Empty && decimal.TryParse(userInput, out decimal priceArg))
                 {
-                    if(priceArg >= 1000 && priceArg <= 500000)
+                    if (priceArg >= 1000 && priceArg <= 500000)
                     {
                         price = priceArg;
                         break;
@@ -265,20 +267,20 @@ namespace UsedCarLot
                 Console.WriteLine("Entry is empty or invalid input.");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-            } while(true);
+            } while (true);
 
             do
             {
                 Console.Clear();
                 Console.Write("Please enter the mileage of the car or exit: ");
                 string userInput = Console.ReadLine().Trim();
-                if("exit".Equals(userInput.ToLower()))
+                if ("exit".Equals(userInput.ToLower()))
                 {
                     return;
                 }
-                else if(userInput != string.Empty && double.TryParse(userInput, out double mileageArg))
+                else if (userInput != string.Empty && double.TryParse(userInput, out double mileageArg))
                 {
-                    if(mileageArg >= 0 && mileageArg <= 1000000)
+                    if (mileageArg >= 0 && mileageArg <= 1000000)
                     {
                         mileage = mileageArg;
                         break;
@@ -287,9 +289,9 @@ namespace UsedCarLot
                 Console.WriteLine("Entry is empty or invalid input.");
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-            } while(true);
+            } while (true);
 
-            if(mileage < 50)
+            if (mileage < 50)
             {
                 Car newCar = new(make, model, year, price);
                 carList.Add(newCar);
@@ -313,9 +315,9 @@ namespace UsedCarLot
         {
             string startPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), fileName);
             FileInfo file = new FileInfo(startPath);
-            while(!file.Exists)
+            while (!file.Exists)
             {
-                if(file.Directory.Parent == null)
+                if (file.Directory.Parent == null)
                 {
                     return null;
                 }

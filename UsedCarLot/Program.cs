@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            CarLotApp carLot = new();
+            //CarLotApp carLot = new();
 
 
             //carLot.PrintCarList();
