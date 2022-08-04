@@ -17,6 +17,16 @@
             //carLot.PrintCarListNew();
             CarLot carLot = new CarLot();
             carLot.ListAllVehicles();
+
+
+            Console.WriteLine("Which car  would you like to remove?");
+
+            int response = int.Parse(Console.ReadLine());
+
+            carLot.RemoveCar(response);
+
+            carLot.ListAllVehicles();
+
         }
     }
 
