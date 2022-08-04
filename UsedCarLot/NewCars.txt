@@ -1,0 +1,6 @@
+Chevrolet,Silverado 1500,2022,63850
+Ford,Edge,2022,43000
+Ford,Escape,2022,36630
+Kia,Carnival,2022,42000
+Mazda,CX-30,2022,32000
+Toyota,86,2022,29999
