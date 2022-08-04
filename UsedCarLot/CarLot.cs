@@ -14,8 +14,14 @@ namespace UsedCarLot
 		 new UsedCar("Scion", "TC", 2012, 3000m, 185000) // troy
 		};
 
-
-
+		public void AddCar(Car c)
+        {
+			listOfVehicles.Add(c);
+        }
+		public void RemoveCar(Car c)
+        {
+			listOfVehicles.Remove(c);
+        }
 
 
 		public CarLot()
