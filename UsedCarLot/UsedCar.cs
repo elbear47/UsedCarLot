@@ -8,7 +8,10 @@ namespace UsedCarLot
 {
     public class UsedCar:Car
     {
-        public double Mileage { get; set; }
+		private double _mileage;
+
+
+        public double Mileage { get { return _mileage; } set {_mileage = value; } }
 
 		public UsedCar(string make, string model, int year, decimal price,double mileage) // constructor that we define when we instantiate
 		{
