@@ -127,11 +127,10 @@ namespace UsedCarLot
         {
             foreach(Car vehicle in carList)
             {
-                if(vehicle is UsedCar)
+                if(vehicle is not UsedCar)
                 {
-                    continue;
+                    Console.WriteLine(vehicle);
                 }
-                Console.WriteLine(vehicle);
             }
         }
 
